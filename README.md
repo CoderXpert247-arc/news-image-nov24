@@ -35,6 +35,13 @@ python make_image.py   # regenerates news.png (requires Pillow)
 python main.py         # writes /output/entry.png
 ```
 
+## Judging
+
+The submitted image is compared against the other entries in the bounty by
+an AI judge. Determinism is guaranteed on our side: the image is a committed
+static file, so `main.py` produces identical bytes on every run — the judge
+sees exactly the same 1024×1024 PNG no matter when the bounty is evaluated.
+
 ## make.fun
 
 - Bounty: [news-image-20261124](https://make.fun/bounty/news-image-20261124)
