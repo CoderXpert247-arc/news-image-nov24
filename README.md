@@ -10,18 +10,43 @@ An entry for the **[make.fun](https://make.fun)** bounty
 
 ## What it does
 
-`main.py` copies the committed 1024×1024 infographic `news.png` to
-`/output/entry.png`. The image is a one-frame front page of the day's news:
+`main.py` copies the committed 1024×1024 artwork `news.png` to
+`/output/entry.png`. The artwork is a print-style newspaper front page —
+**"The World in One Frame"** — that sums up the whole news day of
+Tuesday 24 November 2026 in a single frame:
 
-- **Lead** — Putin vows "inevitable" retaliation after Ukraine hits Russian oil plants despite Trump's plea
-- Iran orders the Strait of Hormuz closed "day by day" as Qatar pushes peace talks
-- Nvidia reinstates Jensen Huang as CEO after scandal and Trump pressure
-- Major Thanksgiving storm threatens millions of holiday travelers
-- South Korea air-raid alert as Russian jets near its airspace
-- Colombia car bomb injures 23 in night-time blast
-- EU to stop buying Russian seaborne LNG from January 1
-- Alaska Airlines plane strikes truck on runway
-- Allies warn Russia may put a nuclear weapon in space
+- **Lead story** — Putin vows "inevitable" retaliation after Ukraine hits
+  Russian oil plants despite Trump's plea, with the EU-LNG sub-line (the EU
+  stops buying Russian seaborne LNG from January 1)
+- **Globe** — a hand-drawn earth carrying red hotspots on Ukraine, the
+  Strait of Hormuz and Seoul, the day's three flashpoints
+- **Briefing grid** — six cards: Iran closes the Strait of Hormuz "day by
+  day" as Qatar pushes peace talks · Nvidia reinstates Jensen Huang as CEO
+  under Trump pressure · a major Thanksgiving storm threatens millions of
+  US holiday travelers · South Korea air-raid alert as Russian jets near
+  its airspace · Colombia car bomb in Bogota injures 23 · allies warn
+  Russia may put a nuclear weapon in space
+- **"Also today" bar** — Alaska Airlines plane strikes truck on runway
+- **Masthead + footer** — dateline strip and source line (AP · Al Jazeera ·
+  Reuters · Guardian · DW)
+
+## Design
+
+The palette is deliberately print-like: cream paper `#F6F1E4`, ink navy
+`#101828` for the masthead and globe ocean, signal red `#B22222` for the
+lead kicker and hotspots, amber `#E8A33D` for the dateline and orbit, muted
+teal `#3E7C7B` for the Africa/Australia landmasses and two category chips,
+and warm grey `#6E6A62` for secondary type. The layout is a four-band
+front page — masthead (0–160 px), hero split between the lead story and the
+globe (170–500 px), a 2×3 briefing grid of white cards (512–898 px), then
+the "also today" bar and footer — with one consistent gutter (40 px) and a
+single column rule at x=568 tying the hero halves together. Type hierarchy
+runs in three clear steps: 50 px letterspaced masthead title, 32 px serif
+lead headline, 19 px card headlines, 12–13 px chips, tags and footer.
+Everything is drawn with Pillow only — text is wrapped by hand, the globe
+is layered (glow, ocean, continents, graticule, shading, markers) because
+`ImageDraw` on RGBA replaces pixels instead of blending them — so the
+render is fully deterministic.
 
 ## Determinism
 
